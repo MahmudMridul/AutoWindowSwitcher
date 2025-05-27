@@ -141,6 +141,12 @@ namespace AutoWindowSwitcher.Application
 
         public static void DemoMouseMovement()
         {
+            Console.WriteLine("Enter total duration in minutes: ");
+            if (!int.TryParse(Console.ReadLine(), out int totalMinutes) || totalMinutes <= 0)
+            {
+                Console.WriteLine("Invalid duration. Please enter a positive number.");
+                return;
+            }
             Console.WriteLine("Starting automated mouse movement demo...");
             Console.WriteLine("Press any key to stop the demo.");
 
@@ -149,7 +155,7 @@ namespace AutoWindowSwitcher.Application
             int screenHeight = 1080; // Adjust based on your screen
 
             DateTime startTime = DateTime.Now;
-            while (!Console.KeyAvailable && (DateTime.Now - startTime).TotalSeconds < 10)
+            while (!Console.KeyAvailable && (DateTime.Now - startTime).TotalMinutes < totalMinutes)
             {
                 int x = rand.Next(100, screenWidth - 100);
                 int y = rand.Next(100, screenHeight - 100);
